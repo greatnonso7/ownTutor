@@ -5,15 +5,16 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
+const config = require('../config/config')
+// const db = {};
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
-}
+console.log(config)
+
+const sequelize = new Sequelize(config.db.database, config.db.username.config.db.password, {
+  dialect: 'mysql',
+  host: config.db.host
+});
+
 
 fs
   .readdirSync(__dirname)
@@ -33,5 +34,13 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+sequelize
+  .authenticate()
+  .then(() => console.log('Connection has been established successfully'))
+  .catch((err) => {
+    console.log('Unable to connect to database', err)
+  })
+
 
 module.exports = db;
