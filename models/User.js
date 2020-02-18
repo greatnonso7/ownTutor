@@ -36,11 +36,17 @@ module.exports = (sequelize, datatypes) => {
             allowNull: true,
             len: [6, 20]
         },
+        permission_id: {
+            // foreign Key in permission table
+            type: datatypes.INTEGER,
+            required: true,
+            allowNull: false
+        },
         updated_at: {
-            type: datatypes.DATETIME
+            type: datatypes.DATE
         },
         deleted_at: {
-            type: datatypes.DATETIME
+            type: datatypes.DATE
         }
     }, {
         underscored: true,

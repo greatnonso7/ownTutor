@@ -9,8 +9,13 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(cookieParser());
 
+/**
+ * Application Gateways
+ */
+app.use('/user', require('./API_Gateways/User_Gateway'))
+
 /// catch 404 and forwarding to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   const err = new Error("Not Found");
   err.status = 404;
   next(err);
@@ -20,15 +25,15 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
-if (app.get("env") === "development") {
-  app.use(function(err, req, res, next) {
+if (app.get("env") === "dev") {
+  app.use(function (err, req, res, next) {
     res.status(err.status || 500);
   });
 }
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   res.status(err.status || 500);
 });
 

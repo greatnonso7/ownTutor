@@ -6,11 +6,11 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')
-// const db = {};
+const db = {};
 
 console.log(config)
 
-const sequelize = new Sequelize(config.db.database, config.db.username.config.db.password, {
+const sequelize = new Sequelize(config.db.database, config.db.username, config.db.password, {
   dialect: 'mysql',
   host: config.db.host
 });
@@ -34,6 +34,16 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+/**
+ * Associations
+ */
+
+// Permissions
+db.permission.hasMany(db.user)
+
+// Users
+db.user.belongsTo(db.permission)
 
 sequelize
   .authenticate()
