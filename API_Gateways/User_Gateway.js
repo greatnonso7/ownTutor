@@ -11,7 +11,28 @@ const validate = require('validate.js')
  * @body
  */
 router.post('/', asyncHandler((req, res) => {
-    const constraints = {}
+    const constraints = {
+        first_name: {
+            presence: true,
+            length:{maximum: 50}
+        },
+        last_name: {
+            presence: true,
+            length: {maximum: 50}
+        },
+        username: {
+            presence: true,
+            length:{minimum:8, maximum: 20}
+        },
+        password: {
+            presence: true,
+            length:{minimum:8, maximum: 20}
+        },
+        email: {
+            presence: true,
+            email: true
+        }
+    }
     const first_name = req.body.first_name
     const last_name = req.body.last_name
     const username = req.body.username
