@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodejs ./bin/www",
-    "debug": "nodemon --inspect-brk ./bin/www"
+    "debug": "nodemon --inspect-brk ./bin/www",
+    "test": "mocha ./Tests/UserTests/user_db.test.js"
   },
   "dependencies": {
     "chai": "^4.2.0",
