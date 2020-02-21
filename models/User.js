@@ -4,7 +4,8 @@ module.exports = (sequelize, datatypes) => {
     return sequelize.define("user", {
         id: {
             type: datatypes.UUID,
-            primaryKey: true
+            primaryKey: true,
+            defaultValue: datatypes.UUIDV4
         },
         first_name: {
             type: datatypes.STRING,
