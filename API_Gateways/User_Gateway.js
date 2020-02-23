@@ -14,19 +14,29 @@ router.post('/', asyncHandler((req, res) => {
     const constraints = {
         first_name: {
             presence: true,
-            length:{maximum: 50}
+            length: {
+                maximum: 50
+            }
         },
         last_name: {
             presence: true,
-            length: {maximum: 50}
+            length: {
+                maximum: 50
+            }
         },
         username: {
             presence: true,
-            length:{minimum:8, maximum: 20}
+            length: {
+                minimum: 8,
+                maximum: 20
+            }
         },
         password: {
             presence: true,
-            length:{minimum:8, maximum: 20}
+            length: {
+                minimum: 8,
+                maximum: 20
+            }
         },
         email: {
             presence: true,
